@@ -1,0 +1,34 @@
+<div class="table">
+  <div class="search">
+    <input type="text" class="form-control" placeholder="Search something" #inputSearch>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th *ngFor="let column of columns">
+          <span>{{ column?.label }}</span>
+          <span *ngIf="column?.canSort" class="sort" (click)="handleSorting(column.key)">
+            <img src="/assets/icons/down.svg" *ngIf="sortDirection === 'asc' && column.key === sortColumn" alt="">
+            <img src="/assets/icons/up.svg" *ngIf="sortDirection === 'desc' && column.key === sortColumn" alt="">
+            <img src="/assets/icons/down.svg" *ngIf="column.key !== sortColumn" alt="">
+          </span>
+        </th>
+        <th *ngIf="haveActions" colspan="2">
+          Actions
+        </th>
+      </tr>
+    </thead>
+    <tr *ngFor="let rows of tableRows; let i = index; trackBy: trackByRow;">
+      <td *ngFor="let row of rows" [innerHTML]="row"></td>
+      <td *ngIf="haveActions">
+        <button type="button" (click)="handleViewClick(data[i])">View</button>
+      </td>
+      <td *ngIf="haveActions">
+        <button type="button" (click)="handleEditClick(data[i])">Edit</button>
+      </td>
+      <td *ngIf="haveActions">
+        <button type="button" (click)="handleRemove(data[i])">Remove</button>
+      </td>
+    </tr>
+  </table>
+</div>

@@ -1,0 +1,14 @@
+<div class="table-content">
+  <button class="add-post" routerLink="/posts/create">Add post</button>
+  <glr-table
+    [columns]="tableColumns"
+    [data]="tableData"
+    [haveActions]="true"
+    (onEditItem)="handleEditItem($event)"
+    (onRemoveItem)="handleRemoveItem($event)"
+    (onSortEmit)="handleSorting($event)"
+    (onSearchChange)="handleSearch($event)"
+    (onViewItem)="handleViewItem($event)"
+  >
+  </glr-table>
+</div>
